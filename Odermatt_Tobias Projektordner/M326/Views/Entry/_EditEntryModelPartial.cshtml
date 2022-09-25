@@ -1,0 +1,42 @@
+﻿@model Entry
+ <div class="modal fade" id="editEntry" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Eintrag bearbeiten</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schliessen"></button>
+      </div>
+      <div class="modal-body">
+    <form asp-action="manageEntry" method="post">
+       <div class="form-group">
+            <input asp-for="ID" type="hidden" />
+            <input asp-for="student_ID" type="hidden" value="@ViewBag.StudentID"/>
+            <div class="row">
+                <div class="col form-group">
+                       <select asp-for="type" class="form-control" aria-label=".form-select-sm"> required>
+                          <option value="Verspätung">Verspätung</option>
+                          <option value="Absenz">Absenz</option>
+                    </select>
+                </div>
+                                           <div class="col form-group">
+  <input asp-for="Excused" class="form-check-input" type="checkbox" id="Checkbox">
+  <label class="form-check-label" for="Checkbox">
+    Entschuldigen
+  </label>
+</div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col form-group">
+                    <input asp-for="TimeOfAction" placeholder="Zeit des Versäumnis *" class="form-control" maxlength="50" required />
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schliessen</button>
+        <button type="submit" class="btn btn-primary">Speichern</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

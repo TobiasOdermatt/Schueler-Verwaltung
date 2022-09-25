@@ -1,0 +1,39 @@
+﻿
+<h4>Hier können die Klassen verwaltet werden.</h4>
+<div id="modaldiv"></div>
+<button type="button" class="btn btn-success tableButton" data-toggle="ajax-modal" data-target="#addClass" asp-controller="Class"
+        data-url="@Url.Action("Create")">Klasse anlegen</button>
+
+<table class = "table table-grey table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name:</th>
+            <th scope="col">Klassenlehrer:</th>
+            <th scope="col" align=right></t>
+            <th scope="col" align=right></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(Class Class in ViewBag.Classes)
+            {
+                <tr>
+                <td scope="col">
+                <a asp-controller="Class" asp-action="viewClass" asp-route-id="@Class.ID" class="link-secondary">@Class.name</a>
+                </td>
+                <td scope="col">
+                @Class.teacherName
+                </td>
+                <td scope="col" align=right>
+                <button type="button" class="btn btn-secondary" data-toggle="ajax-modal" data-target="#editClass" asp-controller="Class"
+        data-url="@Url.Action($"Edit/{Class.ID}")">Bearbeiten</button>
+                </td>
+                <td scope="col" align=right>
+              <button type="button" class="btn btn-danger" data-toggle="ajax-modal" data-target="#deleteClass" asp-controller="Student"
+        data-url="@Url.Action($"deleteClass/{Class.ID}")">Löschen</button>
+                </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

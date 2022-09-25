@@ -1,0 +1,31 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/*Damit ein Abstand zwischen anlegen Button und Tabelle entsteht*/
+.tableButton{
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+/*Tabelleninhalt wird hier fixiert*/
+tr {
+    width: 100%;
+    display: inline-table;
+    table-layout: fixed;
+}
+

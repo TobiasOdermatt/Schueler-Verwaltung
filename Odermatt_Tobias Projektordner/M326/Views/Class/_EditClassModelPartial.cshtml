@@ -1,0 +1,32 @@
+﻿@model Class
+ <div class="modal fade" id="editClass" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Klasse bearbeiten</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schliessen"></button>
+      </div>
+      <div class="modal-body">
+    <form asp-action="manageClass" method="post">
+       <div class="form-group">
+           <input asp-for="ID" type="hidden" />
+           <div class="row">
+               <div class="col form-group">
+                 <input asp-for="name" placeholder="Klassennamen *" class="form-control" maxlength="50" required/>
+                 <span asp-validation-for="name" class="text-danger"></span>
+               </div></div>
+               <br />
+               <div class="row">
+               <div class="col form-group">
+                 <input asp-for="teacherName" placeholder="Klassenlehrer *" class="form-control" maxlength="25" required/>
+                 <span asp-validation-for="teacherName" class="text-danger"></span>
+               </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schliessen</button>
+        <button type="submit" class="btn btn-primary">Speichern</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

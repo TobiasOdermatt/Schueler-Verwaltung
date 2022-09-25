@@ -1,0 +1,57 @@
+﻿
+<div id="modaldiv"></div>
+<div class="well well-sm"><h4>Klassenliste der Klasse "@ViewBag.className"</h4>  
+<p>Klassenlehrer: @ViewBag.teacherName</p></div>
+
+    <br />
+
+<table class = "table table-grey table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Vorname:</th>
+            <th>Nachname:</th>
+   
+            <th style = "width: 14%"></th>
+            <th style = "width: 8%"></th>
+            <th style = "width: 10%"></th>
+            <th style = "width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if(!ViewBag.emptyClass)
+            foreach(Student student in ViewBag.studentsInClass)
+            {
+                <tr>
+                <td>
+                @student.firstname
+                </td>
+                <td>
+                @student.lastname
+                </td>
+
+
+                
+                <td style = "width: 14%">
+                <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#detailStudent" 
+        data-url="@Url.Content($"~/Student/details?studentID={student.ID}")">Schüler ansehen</button>
+                </td>
+
+                <td  style = "width: 8%">
+            <a class="btn btn-info" href="@Url.Content($"~/Entry/Index?studentID={student.ID}")" role="button">Einträge</a>
+                </td>
+
+                <td  style = "width: 10%">
+                <button type="button" class="btn btn-secondary" data-toggle="ajax-modal" data-target="#editStudent"
+        data-url="@Url.Content($"~/Student/Edit/{student.ID}")">Bearbeiten</button>
+                </td>
+
+                <td style = "width: 10%">
+                <button type="button" class="btn btn-danger" data-toggle="ajax-modal" data-target="#deleteStudent"
+        data-url="@Url.Content($"~/Student/deleteStudent/{student.ID}")">Löschen</button>
+                </td>
+                </tr>   
+            }
+        }
+    </tbody>
+</table>

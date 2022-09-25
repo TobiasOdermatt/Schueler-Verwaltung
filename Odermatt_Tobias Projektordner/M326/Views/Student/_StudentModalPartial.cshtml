@@ -1,0 +1,77 @@
+﻿@model Student
+ <div class="modal fade" id="addStudent" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Schüler anlegen</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schliessen"></button>
+      </div>
+      <div class="modal-body">
+  <form asp-action="manageStudent" method="post">
+        <div class="card-body">
+
+            <input asp-for="ID" type="hidden" />
+            <div class="row">
+                <div class="col form-group">
+                    <input asp-for="firstname" placeholder="Vorname *" class="form-control" maxlength="25" required/>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col form-group">
+                    <input asp-for="lastname" placeholder="Nachname *" class="form-control" maxlength="25" required/>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col form-group">
+                    <input asp-for="street" placeholder="Strasse * " class="form-control" maxlength="30" required/>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col form-group">
+                    <input asp-for="city" placeholder="Stadt* " class="form-control" maxlength="50" required/>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col form-group">
+                    <input asp-for="plz" type="number" max="9999" min=1000 placeholder="Postleitzahl* " class="form-control" required/>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col form-group">
+
+                    <select asp-for="class_ID" class="form-control" aria-label=".form-select-sm">
+                        <option value="0" selected>Klasse wählen</option>
+                        @{
+                            foreach (KeyValuePair<int, String> _class in ViewBag.ClassDict)
+                            {
+                                <option value="@_class.Key">@_class.Value</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+                        <br />
+            <div class="row">
+                <div class="col form-group">
+                    <input asp-for="birthday" placeholder="Geburtsdatum * " class="form-control" required/>
+                </div>
+            </div>
+            <br />
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schliessen</button>
+        <button type="submit" class="btn btn-primary">Speichern</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

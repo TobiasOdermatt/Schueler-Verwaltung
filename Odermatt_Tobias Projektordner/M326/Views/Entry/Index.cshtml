@@ -1,0 +1,66 @@
+﻿
+<h3>Einträge von @ViewBag.Student.firstname @ViewBag.Student.lastname</h3>
+
+<button type="button" class="btn btn-success tableButton" data-toggle="ajax-modal" data-target="#addEntry" asp-controller="Entry"
+        data-url="@Url.Content($"~/Entry/Create?studentID={ViewBag.Student.ID}")">Eintrag anlegen</button>
+<br /><div id="modaldiv"></div><br />
+
+
+<div class="card" style="width: 39rem;">
+  <div class="card-body">
+    <h5 class="card-title">Entschuldigt</h5>
+<p>Anzahl Absenzen: @ViewBag.ExcusedAbsenceCount<br />
+Anzahl Verspätungen: @ViewBag.ExcusedDelayCount</p><br />
+    <h5 class="card-title">Unentschuldigt</h5>
+<p>Anzahl Absenzen: @ViewBag.UnexcusedAbsenceCount<br />
+Anzahl Verspätungen: @ViewBag.UnexcusedDelayCount</p><br />
+  </div>
+</div>
+<div class="table-responsive">
+<table class="table table-grey table-striped table-hover">
+    <thead>
+        <tr>
+            <th >Eintrag:</th>
+            <th>Zeit:</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+            @{
+            if(ViewBag.Entry != null){
+            foreach (M326.Models.Entry entry in ViewBag.Entry)
+            {
+                <tr>
+
+                    <td>
+                    @{if(entry.type == "Absenz" || entry.type == "Verspätung"){
+                    if(entry.Excused){<p class="text-success">@(entry.type)</p>}
+                    if(entry.Excused == false){<p class="text-danger">@(entry.type)</p>}}
+                    else{<p class="text-info">@(entry.type)</p>}}
+                    </td>
+
+                 @{string TimeOfAction = entry.TimeOfAction.ToString();
+                //Zeigt die Zeit der Aktion an, für die Darstellung werden die letzten 3 Zeichen (Sekunden) entfernt
+                        <td>@{ TimeOfAction = TimeOfAction.Remove(TimeOfAction.ToString().Length - 3);}
+                        @TimeOfAction</td>}
+
+                             <td scope="col" align=left>
+             @if(entry.Excused == false){<a class="btn btn-warning" href="@Url.Content($"~/Entry/excuseEntry/{entry.ID}")" role="button">Entschuldigen</a>}
+                </td>
+
+                  <td scope="col" align=right>
+                <button type="button" class="btn btn-secondary" data-toggle="ajax-modal" data-target="#editStudent"
+        data-url="@Url.Content($"~/Entry/Edit?id={entry.ID}")">Bearbeiten</button>
+                </td>
+         <td scope="col" align=right>
+            <a class="btn btn-danger" href="@Url.Content($"~/Entry/deleteEntry/{entry.ID}")" role="button">Löschen</a>
+                </td>
+
+                </tr>
+            }
+        }
+        }
+    </tbody>
+</table></div>

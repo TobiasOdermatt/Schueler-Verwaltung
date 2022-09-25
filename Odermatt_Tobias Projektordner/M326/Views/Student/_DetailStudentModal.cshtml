@@ -1,0 +1,33 @@
+﻿@model Student
+ <div class="modal fade" id="detailStudent" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Details über Schüler @ViewBag.Student.firstname @ViewBag.Student.lastname:</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schliessen"></button>
+      </div>
+      <div class="modal-body">
+          <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Adresse:</h5>
+                <address>
+                    @ViewBag.Student.firstname @ViewBag.Student.lastname <br>
+                    @ViewBag.Student.street <br>
+                    @ViewBag.Student.plz @ViewBag.Student.city<br><br />
+
+                        <h6 class="card-subtitle mb-2 text-muted">Geboren:@{string birthday = ViewBag.Student.birthday.ToString();
+                //Zeigt das Geburtsdatum an, für die Darstellung werden die letzten 8 Zeichen (Sekunden : Minute : Stunden) entfernt
+                        <td>@{ birthday = birthday.Remove(birthday.ToString().Length - 8);}
+                        @birthday</td>}</h6>
+                    </address>
+  </div>
+</div>
+
+
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schliessen</button>
+      </div>
+    </div>
+  </div>
+</div>
